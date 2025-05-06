@@ -26,3 +26,4 @@ SankatMochan.ai/
 ├── README.md                         # Project description, setup instructions, etc.
 └── requirements.txt                  # Common dependencies for both frontend and backend (if needed)
 
+
