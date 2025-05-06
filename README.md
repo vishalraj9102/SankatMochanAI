@@ -1,6 +1,9 @@
 # SankatMochanAI
 SankatMochan.ai is a platform designed to help developers easily discover AI tools for coding. This project uses React for the frontend, Flask for the backend, PostgreSQL for the database, and Redis for caching, all containerized using Docker. The goal is to provide a seamless user experience in finding and using AI tools
 
+### Project Structure
+
+```plaintext
 SankatMochan.ai/
 ├── backend/                          # Backend related code (Flask API)
 │   ├── app/                          # Flask app folder
@@ -25,6 +28,7 @@ SankatMochan.ai/
 ├── .gitignore                        # Ignore unnecessary files from Git
 ├── README.md                         # Project description, setup instructions, etc.
 └── requirements.txt                  # Common dependencies for both frontend and backend (if needed)
+
 
 
 
