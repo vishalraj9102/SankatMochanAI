@@ -1,0 +1,7 @@
+
+Flask
+Flask-SQLAlchemy
+Flask-Redis
+psycopg2
+redis
+gunicorn
