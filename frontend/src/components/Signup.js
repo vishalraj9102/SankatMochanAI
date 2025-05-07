@@ -1,95 +1,137 @@
 import React, { useState } from 'react';
 
-function Signup() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+function Home() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    password: '',
+  });
 
-  const handleSignup = (e) => {
+  const [isSignUp, setIsSignUp] = useState(true); // This state will toggle between signup and login
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle signup logic here (e.g., send data to backend API)
-    console.log("Signing up with", email, password);
+    console.log(isSignUp ? 'Signup Data:' : 'Login Data:', formData);
+  };
+
+  const toggleForm = () => {
+    setIsSignUp(!isSignUp); // Toggle between signup and login
   };
 
   const styles = {
-    signupContainer: {
+    homeContainer: {
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      width: '100vw',
+      height: '100vh',
       display: 'flex',
-      flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
-      height: '100vh',
-      backgroundColor: '#f4f4f9',
-      padding: '20px',
+      backgroundColor: 'rgba(4, 12, 40, 0.9)', // dark blue
+      backdropFilter: 'blur(2px)',
+    },
+    formBox: {
+      background: 'rgba(240, 248, 255, 0.1)', // light bluish glass
+      backdropFilter: 'blur(20px)',
+      borderRadius: '16px',
+      border: '1px solid rgba(255, 255, 255, 0.2)',
+      padding: '50px',
+      maxWidth: '480px',
+      width: '90%',
+      boxShadow: '0 8px 30px rgba(0,0,0,0.4)',
     },
     heading: {
-      marginBottom: '20px',
-      fontSize: '24px',
-      color: '#333',
+      fontSize: '28px',
+      marginBottom: '25px',
+      color: '#ffffff',
+      textAlign: 'center',
     },
     form: {
       display: 'flex',
       flexDirection: 'column',
-      width: '100%',
-      maxWidth: '400px',
+      gap: '18px',
     },
     input: {
-      padding: '10px',
-      marginBottom: '15px',
-      border: '1px solid #ccc',
-      borderRadius: '5px',
-      fontSize: '16px',
+      padding: '14px',
+      borderRadius: '8px',
+      border: 'none',
+      outline: 'none',
+      fontSize: '17px',
+      backgroundColor: 'rgba(255, 255, 255, 0.2)',
+      color: '#fff',
     },
     button: {
-      padding: '10px',
-      backgroundColor: '#007bff',
-      color: 'white',
+      padding: '14px',
+      backgroundColor: '#2196f3',
+      color: '#fff',
       border: 'none',
-      borderRadius: '5px',
-      fontSize: '16px',
+      borderRadius: '8px',
       cursor: 'pointer',
+      fontSize: '17px',
     },
-    buttonHover: {
-      backgroundColor: '#0056b3',
+    signinText: {
+      marginTop: '18px',
+      textAlign: 'center',
+      color: '#ccc',
+      fontSize: '15px',
     },
-    paragraph: {
-      marginTop: '15px',
-      fontSize: '14px',
-    },
-    link: {
-      color: '#007bff',
-      textDecoration: 'none',
-    },
-    linkHover: {
+    signinLink: {
+      color: '#90caf9',
       textDecoration: 'underline',
-    },
+      cursor: 'pointer',
+    }
   };
 
   return (
-    <div style={styles.signupContainer}>
-      <h2 style={styles.heading}>Create an Account</h2>
-      <form onSubmit={handleSignup} style={styles.form}>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-          style={styles.input}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-          style={styles.input}
-        />
-        <button type="submit" style={styles.button}>Signup</button>
-      </form>
-      <p style={styles.paragraph}>
-        Already have an account? <a href="/login" style={styles.link}>Login here</a>
-      </p>
+    <div style={styles.homeContainer}>
+      <div style={styles.formBox}>
+        <h2 style={styles.heading}>{isSignUp ? 'Signup to SankatMochan.ai' : 'Login to SankatMochan.ai'}</h2>
+        <form style={styles.form} onSubmit={handleSubmit}>
+          {isSignUp && (
+            <input
+              style={styles.input}
+              type="text"
+              name="name"
+              placeholder="Your Name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+            />
+          )}
+          <input
+            style={styles.input}
+            type="email"
+            name="email"
+            placeholder="Your Email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
+          <input
+            style={styles.input}
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={formData.password}
+            onChange={handleChange}
+            required
+          />
+          <button style={styles.button} type="submit">{isSignUp ? 'Signup' : 'Login'}</button>
+        </form>
+        <p style={styles.signinText}>
+          {isSignUp ? 'Already have an account?' : 'Don\'t have an account?'} 
+          <span style={styles.signinLink} onClick={toggleForm}>
+            {isSignUp ? 'Sign In' : 'Sign Up'}
+          </span>
+        </p>
+      </div>
     </div>
   );
 }
 
-export default Signup;
+export default Home;
