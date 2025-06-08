@@ -1,0 +1,41 @@
+# Python / Flask
+__pycache__/
+*.py[cod]
+*.sqlite3
+*.log
+instance/
+.env
+venv/
+*.db
+
+# Redis (optional, if storing dumps or config locally)
+dump.rdb
+*.rdb
+
+# Node / React
+node_modules/
+build/
+dist/
+.env.local
+.env.development
+.env.production
+
+# VSCode & OS files
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Docker
+*.pid
+*.sock
+*.tar
+*.gz
+
+# Pytest cache
+.pytest_cache/
+coverage/
+htmlcov/
+
+# Others
+*.idea/
+*.egg-info/
